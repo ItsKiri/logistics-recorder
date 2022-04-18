@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/RecordsList.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/RecordsList.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { useRef } from "react";
+import PropTypes from "prop-types";
+import Record from "./Record";
+import ResultsList from "./ResultsList";
+/**
+ *
+ * @param {*} param0
+ * @returns
+ */
+function RecordsList({
+  records,
+  results,
+  notes,
+  removeRecord,
+  updateRecord,
+  cancelRecord,
+  setResults,
+  addNote,
+}) {
+  const refSearchInput = useRef();
+  /**
+   *
+   * @param {*} records
+   * @returns
+   */
+  function recordsCreated(records) {
+    return records.filter((record) => record.logisticStatus === "created");
+  }
+  /**
+   *
+   * @param {*} records
+   * @returns
+   */
+  function recordsOnTheWay(records) {
+    return records.filter((record) => record.logisticStatus === "onTheWay");
+  }
+  /**
+   *
+   * @param {*} records
+   * @returns
+   */
+  function recordsDelivered(records) {
+    return records.filter((record) => record.logisticStatus === "delivered");
+  }
+  /**
+   *
+   * @param {*} records
+   * @returns
+   */
+  function recordsCanceled(records) {
+    return records.filter((record) => record.logisticStatus === "canceled");
+  }
+  /**
+   *
+   * @param {*} records
+   * @param {*} id
+   * @returns
+   */
+  function recordsSearched(records, id) {
+    return records.filter((result) => result.id === id);
+  }
+
+  return (
+    &lt;div className="RecordsList">
+      &lt;form align="center">
+        &lt;label className="form-label">
+          {" "}
+          &lt;h4 align="center">Search: &lt;/h4>
+          &lt;input
+            type="text"
+            className="form-control"
+            ref={refSearchInput}
+          >&lt;/input>
+          &lt;button
+            className="btn btn-primary"
+            onClick={(evt) => {
+              evt.preventDefault();
+              setResults(
+                recordsSearched(records, refSearchInput.current.value)
+              );
+            }}
+          >
+            Search
+          &lt;/button>
+        &lt;/label>
+      &lt;/form>
+      &lt;hr />
+      &lt;ResultsList
+        results={results}
+        notes={notes}
+        removeRecord={removeRecord}
+        updateRecord={updateRecord}
+        cancelRecord={cancelRecord}
+        addNote={addNote}
+      >&lt;/ResultsList>
+      &lt;hr />
+
+      &lt;div>
+        &lt;h3 align="center">Records in Created&lt;/h3>
+        {recordsCreated(records).map((r, i) => (
+          &lt;Record
+            key={"record" + i}
+            record={r}
+            notes={notes}
+            removeRecord={removeRecord}
+            updateRecord={updateRecord}
+            cancelRecord={cancelRecord}
+            addNote={addNote}
+          >&lt;/Record>
+        ))}
+      &lt;/div>
+      &lt;div>
+        &lt;h3 align="center">Records on the Way &lt;/h3>
+        {recordsOnTheWay(records).map((r, i) => (
+          &lt;Record
+            key={"record" + i}
+            record={r}
+            notes={notes}
+            removeRecord={removeRecord}
+            updateRecord={updateRecord}
+            cancelRecord={cancelRecord}
+            addNote={addNote}
+          >&lt;/Record>
+        ))}
+      &lt;/div>
+      &lt;div>
+        &lt;h3 align="center">Records in Delivered&lt;/h3>
+        {recordsDelivered(records).map((r, i) => (
+          &lt;Record
+            key={"record" + i}
+            record={r}
+            notes={notes}
+            removeRecord={removeRecord}
+            updateRecord={updateRecord}
+            cancelRecord={cancelRecord}
+            addNote={addNote}
+          >&lt;/Record>
+        ))}
+      &lt;/div>
+      &lt;div>
+        &lt;h3 align="center">Records in Canceled&lt;/h3>
+        {recordsCanceled(records).map((r, i) => (
+          &lt;Record
+            key={"record" + i}
+            record={r}
+            notes={notes}
+            removeRecord={removeRecord}
+            updateRecord={updateRecord}
+            cancelRecord={cancelRecord}
+            addNote={addNote}
+          >&lt;/Record>
+        ))}
+      &lt;/div>
+    &lt;/div>
+  );
+}
+
+RecordsList.propTypes = {
+  records: PropTypes.array.isRequired,
+  notes: PropTypes.array.isRequired,
+  removeRecord: PropTypes.func.isRequired,
+  updateRecord: PropTypes.func.isRequired,
+  cancelRecord: PropTypes.func.isRequired,
+  addNote: PropTypes.func.isRequired,
+};
+
+export default RecordsList;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AboutPage">AboutPage</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#CreateNoteForm">CreateNoteForm</a></li><li><a href="global.html#CreateRecordForm">CreateRecordForm</a></li><li><a href="global.html#MainPage">MainPage</a></li><li><a href="global.html#Note">Note</a></li><li><a href="global.html#Record">Record</a></li><li><a href="global.html#RecordManager">RecordManager</a></li><li><a href="global.html#RecordsList">RecordsList</a></li><li><a href="global.html#RecordsPage">RecordsPage</a></li><li><a href="global.html#ResultsList">ResultsList</a></li><li><a href="global.html#SearchForm">SearchForm</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Sun Apr 17 2022 20:14:17 GMT-0700 (北美太平洋夏令时间)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
