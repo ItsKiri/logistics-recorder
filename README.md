@@ -1,10 +1,10 @@
 # logistics-record
 
-Step 1: Direct to the program on console
+Step 1: Direct to the program on console.
 
-Step 2: npm install
+Step 2: npm install.
 
-Step 3: npm start
+Step 3: npm start.
 
 Step 4(for cypress test): Open a new console, direct to the program, npm run cypress:open
 
